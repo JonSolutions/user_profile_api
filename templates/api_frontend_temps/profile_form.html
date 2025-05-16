@@ -1,0 +1,153 @@
+{% extends '../../../DjangoProject/templates/core_temps/base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Edit Profile</h4>
+                    <a href="{% url 'profile_view' %}" class="btn btn-light btn-sm">View Profile</a>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        {% if messages %}
+                        <div class="alert alert-success">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                                {{ form.first_name }}
+                                {% if form.first_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.first_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                                {{ form.last_name }}
+                                {% if form.last_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.last_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.bio.id_for_label }}" class="form-label">Bio</label>
+                            {{ form.bio }}
+                            {% if form.bio.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.bio.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.birth_date.id_for_label }}" class="form-label">Birth Date</label>
+                                {{ form.birth_date }}
+                                {% if form.birth_date.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.birth_date.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.location.id_for_label }}" class="form-label">Location</label>
+                                {{ form.location }}
+                                {% if form.location.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.location.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.website.id_for_label }}" class="form-label">Website</label>
+                                {{ form.website }}
+                                {% if form.website.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.website.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone Number</label>
+                                {{ form.phone_number }}
+                                {% if form.phone_number.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.phone_number.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="{{ form.profile_picture.id_for_label }}" class="form-label">Profile Picture</label>
+                            <div class="input-group">
+                                {% if profile.profile_picture %}
+                                <div class="profile-pic-preview mb-2">
+                                    <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture" class="img-thumbnail" style="max-height: 100px;">
+                                </div>
+                                {% endif %}
+                                {{ form.profile_picture }}
+                            </div>
+                            {% if form.profile_picture.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.profile_picture.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

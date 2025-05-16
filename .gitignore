@@ -1,0 +1,22 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+.venv
+
+# Environment variables
+.env
+
+# Django stuff:
+*.sqlite3
+db.sqlite3
+
+# VS Code settings
+.vscode/
+
+# macOS/Windows
+.DS_Store
+Thumbs.db
