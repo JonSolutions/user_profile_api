@@ -18,7 +18,7 @@ from .permissions import IsOwnerOrReadOnly, IsOwner
 User = get_user_model()
 
 
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
     """
